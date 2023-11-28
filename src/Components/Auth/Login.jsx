@@ -16,15 +16,24 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post("http://localhost/api/user/login", input).then((response) => {
-      if (response?.data?.status === 0) {
-        console.log(response.data);
-        setError({ error: true, message: response?.data?.error });
-      } else {
-        localStorage.setItem("auth", JSON.stringify(response?.data));
-        navigate("/");
-      }
-    });
+    axios
+      .post("http://localhost/api/user?user=login", input)
+      .then((response) => {
+        if (response?.data?.status === 0) {
+          setError({ error: true, message: response?.data?.error });
+        } else {
+          const userData = {
+            status: response?.data?.status,
+            user: {
+              id: response.data.user.id,
+              email: response?.data?.user?.email,
+              firstname: response?.data?.user?.firstname,
+            },
+          };
+          localStorage.setItem("auth", JSON.stringify(userData));
+          navigate("/");
+        }
+      });
   };
 
   return (
