@@ -1,11 +1,11 @@
 import { Box, Typography, CardMedia, Button } from "@mui/material";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { makeRequest } from "../../Utils/request";
 import { Episodes, Header } from "../";
+const axios = require("axios");
 
 const AnimeInfo = () => {
-  const location = useLocation();
   const [animeInfo, setAnimeInfo] = useState({});
   const { animeId } = useParams();
 
@@ -14,6 +14,21 @@ const AnimeInfo = () => {
       setAnimeInfo(res?.data)
     );
   }, [animeId]);
+
+  const handleBookmark = () => {
+    const userEmail = JSON.parse(localStorage.getItem("auth"))?.user?.email;
+    const input = {
+      name: animeId,
+      email: userEmail,
+    };
+    if (userEmail) {
+      axios
+        .post(`http://localhost/api/user?bookmark=add`, input)
+        .then((res) => alert(res?.data?.message));
+    } else {
+      alert("Please Log In First.");
+    }
+  };
 
   return (
     <Box
@@ -26,17 +41,37 @@ const AnimeInfo = () => {
     >
       <Header isInfo={true} />
       <Box sx={{ display: "flex" }}>
-        <CardMedia
-          component="img"
-          image={animeInfo?.image}
-          alt={animeInfo?.title}
+        <Box
           sx={{
             height: { xs: "150px", md: "350px", sm: "300px" },
             width: { xs: "150px", md: "350px", sm: "300px" },
             borderRadius: "5px",
             margin: "10px",
+            overflow: "hidden",
+            position: "relative",
           }}
-        />
+        >
+          <CardMedia
+            component="img"
+            className="bookmark-btn"
+            title="Add Bookmark"
+            image="/icons/bookmark.svg"
+            alt="bookmark-btn"
+            sx={{
+              position: "absolute",
+              width: "20%",
+              height: "auto",
+              top: "-6px",
+              left: "5px",
+            }}
+            onClick={handleBookmark}
+          />
+          <CardMedia
+            component="img"
+            image={animeInfo?.image}
+            alt={animeInfo?.title}
+          />
+        </Box>
         <Box
           sx={{
             width: "100%",

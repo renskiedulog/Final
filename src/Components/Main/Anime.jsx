@@ -18,11 +18,8 @@ const Anime = ({ animes, isSearch }) => {
         gridAutoColumns: "column-reverse",
       }}
     >
-      {animes.map((anime,index) => (
-        <Box
-          key={index}
-          sx={{ display: "flex", flexDirection: "column" }}
-        >
+      {animes.map((anime, index) => (
+        <Box key={index} sx={{ display: "flex", flexDirection: "column" }}>
           <Link
             to={`/info/${anime.id}`}
             title={anime.title}
@@ -37,7 +34,7 @@ const Anime = ({ animes, isSearch }) => {
                 height: "210px",
                 borderRadius: "5px",
               }}
-            ></CardMedia>
+            />
             <Typography
               variant="subtitle2"
               sx={{

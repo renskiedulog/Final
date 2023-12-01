@@ -151,3 +151,8 @@ body {
   align-items: center;
   justify-content: center;
 }
+
+.bookmark-btn:hover {
+  scale: 1.05;
+  cursor: pointer;
+}
