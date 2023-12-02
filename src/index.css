@@ -156,3 +156,13 @@ body {
   scale: 1.05;
   cursor: pointer;
 }
+.bookmark-link {
+  opacity: .8;
+}
+
+.bookmark-link:hover {
+  opacity: 1;
+}
+.bookmark-link:hover > * {
+  color: var(--hightlight-button) !important;
+}

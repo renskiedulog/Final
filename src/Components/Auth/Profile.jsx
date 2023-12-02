@@ -1,5 +1,6 @@
 import { Box, Typography, Link, Avatar, Button } from '@mui/material';
 import { useState, useEffect } from 'react';
+import { Bookmarks } from '../';
 const axios = require('axios');
 
 const Profile = () => {
@@ -36,7 +37,6 @@ const Profile = () => {
     axios.get(`http://localhost/api/user?fetch=bookmarks&email=${JSON.parse(localStorage.getItem("auth"))?.user?.email}`).then(res => setBookmarks(res?.data?.bookmarks));
   }, [])
 
-  console.log(bookmarks)
   return <Box
       sx={{
         background: "#fff1",
@@ -60,6 +60,8 @@ const Profile = () => {
             <Button variant="contained" color='secondary'>Edit</Button>
           </Box>
         </Box>
+
+        <Bookmarks userBookmarks={bookmarks} />
     </Box>;
 };
 
