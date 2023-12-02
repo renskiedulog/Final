@@ -1,5 +1,6 @@
 import { Box, Typography, Link, Avatar, Button } from '@mui/material';
 import { useState, useEffect } from 'react';
+const axios = require('axios');
 
 const Profile = () => {
 
@@ -26,8 +27,16 @@ const Profile = () => {
       children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
     };
   }
+  
+  const [userDetails, setUserDetails] = useState({});
+  const [bookmarks, setBookmarks] = useState([]);
 
-  const user = JSON.parse(localStorage.getItem("auth"))?.user;
+  useEffect(() => {
+    axios.get(`http://localhost/api/user?fetch=user&email=${JSON.parse(localStorage.getItem("auth"))?.user?.email}`).then(res => setUserDetails(res?.data?.user));
+    axios.get(`http://localhost/api/user?fetch=bookmarks&email=${JSON.parse(localStorage.getItem("auth"))?.user?.email}`).then(res => setBookmarks(res?.data?.bookmarks));
+  }, [])
+
+  console.log(bookmarks)
   return <Box
       sx={{
         background: "#fff1",
@@ -40,10 +49,10 @@ const Profile = () => {
 
         <Box sx={{ display:'flex', alignItems: 'center', justifyContent: 'space-between', padding: '5px 12px'}}>
           <Box sx={{ display: 'flex', gap: 1, alignItems: 'center'}}>
-            <Avatar {...stringAvatar('Renato Dulog')} />
+            <Avatar {...stringAvatar(`${userDetails.firstname} ${userDetails.lastname}`)} />
             <Box>
-              <Typography sx={{ fontSize: {xs: '15px', md: '20px'}}}>Renato dulog</Typography>
-              <Typography sx={{ fontSize: {xs: '12px', md: '18px', opacity: '0.7'}}}>renrendulog@gmail.com</Typography>
+              <Typography sx={{ fontSize: {xs: '15px', md: '20px'}}}>{userDetails.firstname} {userDetails.lastname}</Typography>
+              <Typography sx={{ fontSize: {xs: '12px', md: '18px', opacity: '0.7'}}}>{userDetails.email}</Typography>
             </Box>
           </Box>
           <Box sx={{ display: 'flex', gap: 1}}>
@@ -51,7 +60,6 @@ const Profile = () => {
             <Button variant="contained" color='secondary'>Edit</Button>
           </Box>
         </Box>
-
     </Box>;
 };
 

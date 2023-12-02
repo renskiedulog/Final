@@ -93,7 +93,7 @@ const Register = () => {
               transform: "translateY(10px)",
             }}
           >
-            <div>
+            <Box sx={{ width: '100%'}}>
               <label htmlFor="firstname">First Name</label>
               <input
                 type="text"
@@ -102,8 +102,8 @@ const Register = () => {
                 required
                 onChange={handleChange}
               />
-            </div>
-            <div>
+            </Box>
+            <Box sx={{ width: '100%'}}>
               <label htmlFor="lastname">Last Name</label>
               <input
                 type="text"
@@ -112,7 +112,7 @@ const Register = () => {
                 required
                 onChange={handleChange}
               />
-            </div>
+            </Box>
           </Box>
           <div>
             <label htmlFor="email">Email</label>

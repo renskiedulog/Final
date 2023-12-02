@@ -18,3 +18,4 @@ export { default as Header } from "./Extra/Header";
 export { default as Login } from "./Auth/Login";
 export { default as Register } from "./Auth/Register";
 export { default as Profile } from "./Auth/Profile";
+export { default as Bookmarks } from "./Auth/Bookmarks";
