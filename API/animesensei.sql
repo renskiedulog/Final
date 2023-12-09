@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 28, 2023 at 03:04 AM
+-- Generation Time: Dec 09, 2023 at 01:27 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -20,6 +20,33 @@ SET time_zone = "+00:00";
 --
 -- Database: `animesensei`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bookmarks`
+--
+
+CREATE TABLE `bookmarks` (
+  `id` int(11) NOT NULL,
+  `name` text NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `createdAt` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `bookmarks`
+--
+
+INSERT INTO `bookmarks` (`id`, `name`, `email`, `createdAt`) VALUES
+(3, 'goblin-slayer-ii', 'renrendulog@gmail.com', '2023-12-01 15:15:41'),
+(4, 'boku-no-hero-academia-yuuei-heroes-battle', 'renrendulog@gmail.com', '2023-12-01 15:21:14'),
+(11, 'nanatsu-no-taizai-mokushiroku-no-yonkishi', 'renrendulog@gmail.com', '2023-12-02 11:02:10'),
+(12, 'bokura-no-ameiro-protocol', 'renrendulog@gmail.com', '2023-12-02 11:02:27'),
+(14, 'under-ninja', 'renrendulog@gmail.com', '2023-12-02 11:09:48'),
+(15, 'undead-unluck', 'renrendulog@gmail.com', '2023-12-02 11:49:45'),
+(19, 'bakugan-battle-brawlers-new-vestroia', 'renrendulog@gmail.com', '2023-12-08 05:58:57'),
+(20, 'bullbuster', 'renrendulog@gmail.com', '2023-12-08 05:59:08');
 
 -- --------------------------------------------------------
 
@@ -42,11 +69,18 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `createdAt`, `firstname`, `lastname`, `bookmarks`) VALUES
-(1, 'renrendulog@gmail.com', 'renren123', '2023-11-27 11:30:20', 'Renato', 'Dulog', NULL);
+(1, 'renrendulog@gmail.com', 'renskiedulog', '2023-12-09 12:26:10', 'Renato', 'Dulog', NULL),
+(2, 'marlon@gmail.com', 'marlon', '2023-11-28 14:35:11', 'marlon', 'untal', NULL);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `bookmarks`
+--
+ALTER TABLE `bookmarks`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -59,10 +93,16 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `bookmarks`
+--
+ALTER TABLE `bookmarks`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

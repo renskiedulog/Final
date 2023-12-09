@@ -157,12 +157,23 @@ body {
   cursor: pointer;
 }
 .bookmark-link {
-  opacity: .8;
+  opacity: 0.8;
 }
 
 .bookmark-link:hover {
   opacity: 1;
 }
-.bookmark-link:hover > * {
+.bookmark-link:hover > p {
   color: var(--hightlight-button) !important;
+}
+
+.delete-bookmark-btn {
+  position: absolute;
+  background: var(--button-color);
+  color: #fff;
+  padding: 2px 3px;
+  border-radius: 5px;
+  top: -10px;
+  right: -10px;
+  cursor: pointer;
 }
